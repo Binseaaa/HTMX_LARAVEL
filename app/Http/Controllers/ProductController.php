@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -31,5 +32,26 @@ class ProductController extends Controller
             ";
         }
         return $html;
+    }
+
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'img' => 'required',
+            'price' => 'required|numeric',
+            'description' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            $products = Product::orderBy('name');
+            return view('templates._create-products-error', ['errors'=>$validator->errors()->all(), 'products'=>$products]);
+        };
+
+        $products = Product::orderBy('name');
+
+        Product::create($request->all());
+
+        return view('templates._products-list-for-create', ['products'=>$products]);
     }
 }

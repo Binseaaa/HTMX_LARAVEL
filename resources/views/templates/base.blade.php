@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/htmx.org@1.9.12"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <title>HTMX</title>
 </head>
 <body class="bg-gray-300">
@@ -16,7 +18,7 @@
             <a class="py-2 px-4 bg-blue-700 hover:bg-blue-800 rounded" href="/products">Products</a>
             <a class="py-2 px-4 bg-blue-700 hover:bg-blue-800 rounded" href="/contact">Contact</a>
         </section>
-        <article id="content" class="p-5 w-full">
+        <article id="content" class="p-2 w-full">
             @yield('content')
         </article>
     </div>
