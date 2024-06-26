@@ -33,7 +33,7 @@
                   hx-target="#products_list"
                   hx-swap="innerHTML"
                   hx-trigger="submit"
-                  hx-on::after-request="this.reset()"
+                  hx-on::after-request="if(event.detail.successful) this.reset()"
                   method="POST">
                 <div class="modal-body">
                     @csrf
@@ -60,11 +60,21 @@
                 </div>
                 <div id="addProductMessage"></div>
                 <div class="modal-footer">
-                    <button type="button" id="closeModalButton" class="btn btn-danger" data-bs-dismiss="modal"  hx-on::after-request="this.reset()">Close</button>
+                    <button type="button" id="closeModalButton" class="btn btn-danger" data-bs-dismiss="modal"  onclick="closeModal()">Close</button>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    function closeModal() {
+        document.getElementById('name_error').innerHTML = '';
+        document.getElementById('img_error').innerHTML = '';
+        document.getElementById('price_error').innerHTML = '';
+        document.getElementById('description_error').innerHTML = '';
+        document.getElementById('addProductMessage').innerHTML = '';
+    }
+    </script>
 @endsection

@@ -12,7 +12,7 @@
 
 <div id="img_error" hx-swap-oob="true">
     <div class="text-red-800 rounded">
-        <ul class="ms-2">   
+        <ul class="ms-2">
             @if($errors->has('img'))
                 <div class="error">{{ $errors->first('img') }}</div>
             @endif
