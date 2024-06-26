@@ -31,6 +31,5 @@ Route::get('/products', function () {
 });
 
 Route::get('/api/products', [ProductController::class, 'index'])->name('products.index');
-
 Route::post('/store/products', [ProductController::class, 'store'])->name('products.store');
 

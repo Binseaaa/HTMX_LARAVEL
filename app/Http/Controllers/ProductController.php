@@ -42,16 +42,15 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'description' => 'required',
         ]);
-
+    
         if($validator->fails()) {
             $products = Product::orderBy('name');
             return view('templates._create-products-error', ['errors'=>$validator->errors(), 'products'=>$products]);
-        };
-
-        $products = Product::orderBy('name');
+        }
 
         Product::create($request->all());
-
+    
+        $products = Product::orderBy('name');
         return view('templates._products-list-for-create', ['products'=>$products]);
     }
 }
