@@ -33,7 +33,6 @@
                   hx-target="#products_list"
                   hx-swap="innerHTML"
                   hx-trigger="submit"
-                  hx-on::after-request="if(event.detail.successful) this.reset()"
                   method="POST">
                 <div class="modal-body">
                     @csrf
