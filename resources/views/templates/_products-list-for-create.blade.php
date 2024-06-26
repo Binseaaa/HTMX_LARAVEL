@@ -10,14 +10,6 @@
 </div>
 @endforeach
 
-<div id="name_error" hx-swap-oob="true" ></div> 
-
-<div id="img_error" hx-swap-oob="true" ></div>
- 
-<div id="price_error" hx-swap-oob="true" ></div> 
-
-<div id="description_error" hx-swap-oob="true" ></div> 
-
 <div id="addProductMessage" hx-swap-oob="true">
     <div class="bg-green-200 text-green-800 p-2 rounded">
         The product has been added successfully!
