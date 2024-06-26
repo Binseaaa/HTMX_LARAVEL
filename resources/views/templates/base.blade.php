@@ -10,9 +10,9 @@
     <title>HTMX</title>
 </head>
 <body class="bg-gray-300">
-    <div class="mx-auto bg-white shadow-lg flex min-h-[100dvh]">
-        <section class="bg-blue-600 text-white w-64 p-4 flex flex-col space-y-4">
-            <h1>HTMX LARAVEL</h1>
+    <div class="w-full bg-white shadow-lg flex min-h-screen flex-col md:flex-row">
+        <section class="bg-blue-600 text-white w-full md:w-64 p-4 flex flex-col space-y-4">
+            <h1 class="text-lg md:text-xl lg:text-2xl">HTMX LARAVEL</h1>
             <a class="py-2 px-4 bg-blue-700 hover:bg-blue-800 rounded" href="/">Home</a>
             <a class="py-2 px-4 bg-blue-700 hover:bg-blue-800 rounded" href="/about">About</a>
             <a class="py-2 px-4 bg-blue-700 hover:bg-blue-800 rounded" href="/products">Products</a>

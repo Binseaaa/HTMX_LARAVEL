@@ -30,7 +30,7 @@ Route::get('/products', function () {
     return view('pages.products');
 });
 
-Route::get('/api/products', [ProductController::class, 'index']);
+Route::get('/api/products', [ProductController::class, 'index'])->name('products.index');
 
-Route::post('/store/products', [ProductController::class, 'store']);
+Route::post('/store/products', [ProductController::class, 'store'])->name('products.store');
 

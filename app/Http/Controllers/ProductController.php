@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 class ProductController extends Controller
 {
     public function index(Request $request) {
-        $products = Product::orderBy('name');
+        $products = Product::orderBy('price');
 
         if($request->filter) {
             $products->where('name', 'like', "%$request->filter%")
@@ -20,7 +20,7 @@ class ProductController extends Controller
 
         foreach($products->get() as $prod) {
             $html .= "
-                <div class='p-4 rounded bg-blue-200 min-w-[15rem]'>
+            <div class='p-4 rounded bg-blue-200 min-w-[30%]'>
                     <h3 class='text-2xl mb-3'>$prod->name</h3>
 
                     <img src='$prod->img' class='h-[10em] w-[100%] rounded'>
@@ -45,7 +45,7 @@ class ProductController extends Controller
 
         if($validator->fails()) {
             $products = Product::orderBy('name');
-            return view('templates._create-products-error', ['errors'=>$validator->errors()->all(), 'products'=>$products]);
+            return view('templates._create-products-error', ['errors'=>$validator->errors(), 'products'=>$products]);
         };
 
         $products = Product::orderBy('name');
