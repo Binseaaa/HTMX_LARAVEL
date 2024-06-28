@@ -9,27 +9,28 @@
             <form hx-get="/api/products"
                   hx-trigger="submit"
                   hx-target="#products_list"
+                  hx-on="htmx:afterRequest: if(event.detail.successful) this.reset();"
                   class="flex-1 md:flex-none">
                 <input type="text" name="filter" class="p-2 border border-gray-300 rounded w-full md:w-auto" autocomplete="off" placeholder="Search Products">
             </form>
-            <button type="button" class="btn btn-primary mx-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <button type="button" class="btn btn-primary mx-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="reset()">
                 Add
             </button>
         </div>
     </div>
-    <div id="products_list" class="flex flex-wrap gap-2 mt-3 justify-between" hx-get="/api/products" hx-trigger="load delay:500ms" hx-swap="innerHTML">
+    <div id="products_list" class="flex flex-wrap gap-2 mt-3 justify-start" hx-get="/api/products" hx-trigger="load delay:500ms" hx-swap="innerHTML">
 
     </div>
 
-   <!-- Modal -->
+   <!--Create Modal -->
    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Create Product</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal()"></button>
             </div>
-            <form id="productForm" hx-post="/store/products"
+            <form id="productForm" hx-post="/api/products"
                   hx-target="#products_list"
                   hx-swap="innerHTML"
                   hx-trigger="submit"
@@ -59,22 +60,30 @@
                     </div>
                 </div>
                 <div id="addProductMessage"></div>
-                <div class="modal-footer">
-                    <button type="button" id="closeModalButton" class="btn btn-danger" data-bs-dismiss="modal"  onclick="closeModal()">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="button" id="closeModalButton" class="btn btn-danger" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+    <script>
+        function closeModal() {
+            document.getElementById('addProductMessage').innerHTML = '';
+            document.getElementById('name_error').innerHTML = '';
+            document.getElementById('img_error').innerHTML = '';
+            document.getElementById('price_error').innerHTML = '';
+            document.getElementById('description_error').innerHTML = '';
+        }
 
-<script>
-    function closeModal() {
-        document.getElementById('name_error').innerHTML = '';
-        document.getElementById('img_error').innerHTML = '';
-        document.getElementById('price_error').innerHTML = '';
-        document.getElementById('description_error').innerHTML = '';
-        document.getElementById('addProductMessage').innerHTML = '';
-    }
+        function reset() {
+           document.getElementById('productForm').reset();
+            document.getElementById('name_error').innerHTML = '';
+            document.getElementById('img_error').innerHTML = '';
+            document.getElementById('price_error').innerHTML = '';
+            document.getElementById('description_error').innerHTML = '';
+            document.getElementById('addProductMessage').classList.toggle('hidden')
+        }
     </script>
 @endsection

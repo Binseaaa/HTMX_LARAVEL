@@ -40,6 +40,4 @@
     </div>
 </div>
 
-<div id="addProductMessage" hx-swap-oob="true">
-
-</div>
+<div id="addProductMessage" hx-swap-oob="true"></div>
