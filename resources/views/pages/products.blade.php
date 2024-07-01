@@ -6,10 +6,12 @@
             <h1 class="text-3xl md:text-4xl">Product Page</h1>
         </div>
         <div class="flex flex-col md:flex-row flex-wrap gap-2 md:gap-3 mt-3 md:mt-0">
-            <form hx-get="/api/products"
+            <form hx-post="/api/products"
                   hx-trigger="submit"
+                  hx-swap="innerHTML"
                   hx-target="#products_list"
-                  hx-on="htmx:afterRequest: if(event.detail.successful) this.reset();"
+                  hx-on="htmx:afterRequest: if(event.detail.successful) this.reset()"
+                  method="POST"
                   class="flex-1 md:flex-none">
                 <input type="text" name="filter" class="p-2 border border-gray-300 rounded w-full md:w-auto" autocomplete="off" placeholder="Search Products">
             </form>
@@ -18,9 +20,8 @@
             </button>
         </div>
     </div>
-    <div id="products_list" class="flex flex-wrap gap-2 mt-3 justify-start" hx-get="/api/products" hx-trigger="load delay:500ms" hx-swap="innerHTML">
-
-    </div>
+    <div id="products_list" class="flex flex-wrap gap-2 mt-3 justify-start" hx-get="/api/products" hx-trigger="load" hx-swap="innerHTML">
+</div>
 
    <!--Create Modal -->
    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

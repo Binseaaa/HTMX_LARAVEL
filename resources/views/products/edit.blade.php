@@ -1,13 +1,10 @@
-@extends('templates.base')
-
-@section('content')
 <div class="mt-5">
-    <div class="row justify-content-center align-items-center">
-        <div class="col-10 col-md-8 col-lg-6">
+    <div class="row justify-content-center m-auto align-items-center">
+        <div class="w-[30vw] col-10 col-md-8 col-lg-6">
             <h3>Update</h3>
             <form class="mt-6" hx-put="/api/products/{{$product->id}}"
                 hx-trigger="submit"
-                hx-target="body"
+                hx-target="#products_list"
                 hx-swap="innerHTML"
                 method="POST">
                 @csrf
@@ -34,4 +31,3 @@
         </div>
     </div>
 </div>
-@endsection
