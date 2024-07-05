@@ -1,4 +1,4 @@
-@include('templates._products-list-for-create', ['products'=>$products]);
+@include('templates._products-list-for-create', ['products'=>$products])
 
 <div id="name_error" hx-swap-oob="true" hx-on::after-request="this.reset()">
     <div class="text-red-800 rounded">
