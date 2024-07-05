@@ -47,12 +47,12 @@ class ProductController extends Controller
 
 
     public function destroy(Product $product) {
-        $products = Product::orderBy('name');
-
         $product->delete();
 
-        return view('templates._products-list-for-create', ['products' => $products]);
+        return "";
     }
+            // return view('templates._confirm-delete-pro', ['products' => $products]);
+
 
     public function update(Request $request, Product $product){
         $products = Product::orderBy('name');
