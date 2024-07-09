@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 class ProductController extends Controller
 {
     public function index(Request $request){
-        $products = Product::orderBy('name');
+        $products = Product::orderBy('created_at', 'desc');
 
         if($request->filter){
             $products->where('name', 'like', "%$request->filter")
@@ -21,6 +21,8 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        $products = Product::create($request->all());
+
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'img' => 'required',
@@ -29,14 +31,11 @@ class ProductController extends Controller
         ]);
 
         if($validator->fails()) {
-            $products = Product::orderBy('name');
             return view('templates._create-products-error', ['errors'=>$validator->errors(), 'products'=>$products]);
         }
 
-        Product::create($request->all());
 
-        $products = Product::orderBy('name');
-        return view('templates._products-list-for-create', ['products'=>$products]);
+        return view('templates._single-product', ['prod' => $products]);
     }
 
     public function edit(Product $product){

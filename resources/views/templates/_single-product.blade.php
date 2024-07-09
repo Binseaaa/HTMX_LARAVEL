@@ -1,4 +1,4 @@
-<div class='p-4 rounded bg-blue-200 w-[20vw] fade-me-out' id="product{{$prod->id}}">
+<div class='p-4 rounded bg-blue-200 w-[20vw] fade-me-out fade-in' id="product{{$prod->id}}">
     @include('templates._confirm-delete-product', ['products' => $prod])
     <div class='flex justify-end'>
         <button onclick="document.getElementById('deleteProduct{{$prod->id}}').classList.remove('hidden')" data-bs-toggle="modal" data-bs-target="#deleteProduct{{$prod->id}}">
